@@ -288,13 +288,13 @@ void DumpATOMVTK::vtkExportData::writeSER() {
     radii->InsertNextValue(vtkData[i]._Rad);
 
     double vv[3] = {vtkData[i]._VelL[0], vtkData[i]._VelL[1], vtkData[i]._VelL[2]};
-    spheresVelL->InsertNextTupleValue(vv);
+    spheresVelL->InsertNextTuple(vv);
 
     double oo[3] = {vtkData[i]._VelA[0], vtkData[i]._VelA[1], vtkData[i]._VelA[2]};
-    spheresVelA->InsertNextTupleValue(oo);
+    spheresVelA->InsertNextTuple(oo);
 
     double ff[3] = {vtkData[i]._Force[0], vtkData[i]._Force[1], vtkData[i]._Force[2]};
-    spheresForce->InsertNextTupleValue(ff);
+    spheresForce->InsertNextTuple(ff);
 
     spheresMass->InsertNextValue(vtkData[i]._Mass);
 

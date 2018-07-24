@@ -425,7 +425,7 @@ void FixMeshSurfaceStress::calc_total_force()
    return total force or torque component on body
 ------------------------------------------------------------------------- */
 
-double round(double number)
+double round_down(double number)
 {
     double v = 1e4;
     return floor(number * v + 0.5) / v;
@@ -461,12 +461,12 @@ double FixMeshSurfaceStress::compute_vector(int n)
 	//calculate Normal-X-direction
 	double surfNorm[3];
 	triMesh()->surfaceNorm(0,surfNorm);
-	double e1=fabs(round(surfNorm[0]));
+	double e1=fabs(round_down(surfNorm[0]));
 	for(int i = 1; i < mesh()->sizeLocal(); i++)
 		{
 			triMesh()->surfaceNorm(i,surfNorm);
-			if (fabs(round(surfNorm[0]))!=e1)
-				{printf("%1.12f != %1.12f\n",e1,fabs(round(surfNorm[0])));
+			if (fabs(round_down(surfNorm[0]))!=e1)
+				{printf("%1.12f != %1.12f\n",e1,fabs(round_down(surfNorm[0])));
 				error->fix_error(FLERR,this,"mesh is not planar, can not calculate surface Normal e1");} //what is the common norm of a curved mesh ?!
 		}
 	return e1;	
@@ -475,12 +475,12 @@ double FixMeshSurfaceStress::compute_vector(int n)
 	//calculate Normal-Y-direction
 	double surfNorm[3];
 	triMesh()->surfaceNorm(0,surfNorm);
-	double e2=fabs(round(surfNorm[1]));
+	double e2=fabs(round_down(surfNorm[1]));
 	for(int i = 1; i < mesh()->sizeLocal(); i++)
 		{
 			triMesh()->surfaceNorm(i,surfNorm);
-			if (fabs(round(surfNorm[1]))!=e2)
-				{printf("%1.12f != %1.12f\n",e2,fabs(round(surfNorm[1])));
+			if (fabs(round_down(surfNorm[1]))!=e2)
+				{printf("%1.12f != %1.12f\n",e2,fabs(round_down(surfNorm[1])));
 				error->fix_error(FLERR,this,"mesh is not planar, can not calculate surface Normal e2");} //what is the common norm of a curved mesh ?!
 		}
 	return e2;	
@@ -489,12 +489,12 @@ double FixMeshSurfaceStress::compute_vector(int n)
 	//calculate Normal-Z-direction
 	double surfNorm[3];
 	triMesh()->surfaceNorm(0,surfNorm);
-	double e3=fabs(round(surfNorm[2]));
+	double e3=fabs(round_down(surfNorm[2]));
 	for(int i = 1; i < mesh()->sizeLocal(); i++)
 		{
 			triMesh()->surfaceNorm(i,surfNorm);
-			if (fabs(round(surfNorm[2]))!=e3)
-				{printf("%1.12f != %1.12f\n",e3,fabs(round(surfNorm[2])));
+			if (fabs(round_down(surfNorm[2]))!=e3)
+				{printf("%1.12f != %1.12f\n",e3,fabs(round_down(surfNorm[2])));
 				error->fix_error(FLERR,this,"mesh is not planar, can not calculate surface Normal e3");} //what is the common norm of a curved mesh ?!
 		}
 	return e3;	

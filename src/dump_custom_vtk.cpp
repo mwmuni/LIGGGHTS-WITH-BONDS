@@ -1210,13 +1210,13 @@ void DumpCustomVTK::buf2arrays(int n, double *mybuf)
                              static_cast<int>(mybuf[iatom*size_one+j+1]),
                              static_cast<int>(mybuf[iatom*size_one+j+2]) };
               vtkIntArray *pia = static_cast<vtkIntArray*>(paa);
-              pia->InsertNextTupleValue(iv3);
+              pia->InsertNextValue(*iv3);
               break;
             }
           case DOUBLE:
             {
               vtkDoubleArray *pda = static_cast<vtkDoubleArray*>(paa);
-              pda->InsertNextTupleValue(&mybuf[iatom*size_one+j]);
+              pda->InsertNextTuple(&mybuf[iatom*size_one+j]);
               break;
             }
         }
@@ -1224,7 +1224,7 @@ void DumpCustomVTK::buf2arrays(int n, double *mybuf)
       } else if (it->second->GetNumberOfComponents() == 9) {
           if(vtype[it->first] == TENSOR_DOUBLE) {
             vtkDoubleArray *pda = static_cast<vtkDoubleArray*>(paa);
-            pda->InsertNextTupleValue(&mybuf[iatom*size_one+j]);
+            pda->InsertNextTuple(&mybuf[iatom*size_one+j]);
           } else {
               error->all(FLERR,"Tensors of only double values are implemented!");
           }
